@@ -33,7 +33,7 @@ public class DBUtil {
 		}
 		
 		try {
-			DriverManager.getConnection(url, username, password);
+			conn=DriverManager.getConnection(url, username, password);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
