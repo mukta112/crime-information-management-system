@@ -7,8 +7,13 @@ import com.cims.dao.CriminalDao;
 import com.cims.dao.CriminalDaoImpl;
 import com.cims.exceptions.CriminalException;
 import com.cims.models.Criminal;
+import com.cims.models.CriminalAreaDTO;
+import com.cims.models.CriminalPoliceStationDTO;
 
 public class CriminalUsecases {
+	
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_RED = "\u001B[31m";
 	
 	CriminalDao dao=new CriminalDaoImpl();
 	
@@ -57,10 +62,64 @@ public class CriminalUsecases {
 				System.out.format(leftAlignFormat,list.get(i).getCriminalID(),
 						list.get(i).getCriminalName(),list.get(i).getCriminalAge(),
 						list.get(i).getCriminalGender(),list.get(i).getCriminalAddress(),list.get(i).getCriminalIdentificationMark());
-				
-//				System.out.println(list.get(i));
 			}		
 			System.out.format("+------+-----------------+------+----------+-----------------+----------------------+%n");			
+			
+		} catch (CriminalException e) {
+//			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+
+	public void SearchCriminalByArea() {
+		
+		try {
+			List<CriminalAreaDTO> list=dao.SearchCriminalByArea();
+			
+			System.out.println(ANSI_RED+"CRIMINAL DETAILS BY AREA"+ANSI_RESET);
+			
+			String leftAlignFormat = "| %-4d | %-15s | %-4d | %-8s | %-15s | %-20s | %-15s |%n";
+			System.out.format("+------+-----------------+------+----------+-----------------+----------------------+-----------------+%n");
+			System.out.format("| ID   | CriminalName    | Age  | Gender   | Address         | IdentificationMark   | AreaName        |%n");
+			System.out.format("+------+-----------------+------+----------+-----------------+----------------------+-----------------+%n");
+			
+			for(int i=0;i<list.size();i++) {
+				System.out.format(leftAlignFormat,list.get(i).getCriminalID(),
+						list.get(i).getCriminalName(),list.get(i).getCriminalAge(),
+						list.get(i).getCriminalGender(),list.get(i).getCriminalAddress(),
+						list.get(i).getCriminalIdentificationMark(),list.get(i).getAreaName());
+			}		
+			System.out.format("+------+-----------------+------+----------+-----------------+----------------------+-----------------+%n");			
+			
+		} catch (CriminalException e) {
+//			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+
+	public void SearchCriminalByPoliceStation() {
+		
+		try {
+			List<CriminalPoliceStationDTO> list=dao.SearchCriminalByPoliceStation();
+			
+			System.out.println(ANSI_RED+"CRIMINAL DETAILS BY POLICE STATION"+ANSI_RESET);
+			
+			String leftAlignFormat = "| %-4d | %-15s | %-4d | %-8s | %-15s | %-20s | %-15s |%n";
+			System.out.format("+------+-----------------+------+----------+-----------------+----------------------+-----------------+%n");
+			System.out.format("| ID   | CriminalName    | Age  | Gender   | Address         | IdentificationMark   | PSName          |%n");
+			System.out.format("+------+-----------------+------+----------+-----------------+----------------------+-----------------+%n");
+			
+			for(int i=0;i<list.size();i++) {
+				System.out.format(leftAlignFormat,list.get(i).getCriminalID(),
+						list.get(i).getCriminalName(),list.get(i).getCriminalAge(),
+						list.get(i).getCriminalGender(),list.get(i).getCriminalAddress(),
+						list.get(i).getCriminalIdentificationMark(),list.get(i).getPsName());
+			}		
+			System.out.format("+------+-----------------+------+----------+-----------------+----------------------+-----------------+%n");			
 			
 		} catch (CriminalException e) {
 //			e.printStackTrace();
