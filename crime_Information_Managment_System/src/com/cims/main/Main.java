@@ -4,6 +4,7 @@ import com.cims.models.Crime;
 import com.cims.useCases.AreaUsecases;
 import com.cims.useCases.CrimeUsecases;
 import com.cims.useCases.CriminalUsecases;
+import com.cims.useCases.LoginUsecase;
 import com.cims.useCases.PoliceStationUsecase;
 import com.cims.useCases.VictimUsecases;
 
@@ -34,12 +35,23 @@ public class Main {
 //		VictimUsecases v=new VictimUsecases();
 //		v.addVictim();
 		
-//		CriminalUsecases c = new CriminalUsecases();
+		CriminalUsecases c = new CriminalUsecases();
 //		c.addCriminal();
+//		c.SearchCriminalByArea();
+//		c.SearchCriminalByPoliceStation();
 		
 		CrimeUsecases crime=new CrimeUsecases();
-		crime.addCrime();
+		//crime.addCrime();
+//		crime.showCrimeDetails();
+//		crime.SearchCrimeByArea();
+//		crime.SearchCrimeByPoliceStation();
+//		crime.checkStatusByCrimeID();
+//		crime.updateCrimeStatusByCrimeID();
+//		crime.numberOfSolvedOrUnsolvedCases();
+//		crime.numberOfCrimesRecordedInCurrentMonth();
 		
+		LoginUsecase login=new LoginUsecase();
+		login.validateLogin();
 		
 		
 		

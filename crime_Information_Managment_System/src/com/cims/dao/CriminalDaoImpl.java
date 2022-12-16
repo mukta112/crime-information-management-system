@@ -9,6 +9,8 @@ import java.util.List;
 
 import com.cims.exceptions.CriminalException;
 import com.cims.models.Criminal;
+import com.cims.models.CriminalAreaDTO;
+import com.cims.models.CriminalPoliceStationDTO;
 import com.cims.utility.DBUtil;
 
 public class CriminalDaoImpl implements CriminalDao {
@@ -69,6 +71,92 @@ public class CriminalDaoImpl implements CriminalDao {
 				criminal.setCriminalIdentificationMark(im);
 				
 				list.add(criminal);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new CriminalException(e.getMessage());
+		}
+		
+		
+		return list;
+	}
+
+	@Override
+	public List<CriminalAreaDTO> SearchCriminalByArea() throws CriminalException {
+
+		List<CriminalAreaDTO> list=new ArrayList<>();
+		
+		try(Connection conn=DBUtil.provideConnection()) {
+			
+			PreparedStatement ps=conn.prepareStatement("select cl.criminal_id,cl.criminal_name,cl.criminal_age,cl.criminal_gender,cl.criminal_address,cl.criminal_identification_mark,a.area_name \r\n"
+					+ "from criminal cl inner join crime c ON cl.criminal_id=c.criminal_id\r\n"
+					+ "inner join area a ON a.area_id=c.area_id\r\n"
+					+ "ORDER BY cl.criminal_id;");
+			
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				int id=rs.getInt("criminal_id");
+				String n=rs.getString("criminal_name");
+				int age=rs.getInt("criminal_age");
+				String g=rs.getString("criminal_gender");
+				String add=rs.getString("criminal_address");
+				String im=rs.getString("criminal_identification_mark");
+				String area=rs.getString("area_name");
+				
+				CriminalAreaDTO crPsDTO=new CriminalAreaDTO();
+				crPsDTO.setCriminalID(id);
+				crPsDTO.setCriminalName(n);
+				crPsDTO.setCriminalAge(age);
+				crPsDTO.setCriminalGender(g);
+				crPsDTO.setCriminalAddress(add);
+				crPsDTO.setCriminalIdentificationMark(im);
+				crPsDTO.setAreaName(area);
+				
+				list.add(crPsDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new CriminalException(e.getMessage());
+		}
+		
+		
+		return list;
+	}
+
+	@Override
+	public List<CriminalPoliceStationDTO> SearchCriminalByPoliceStation() throws CriminalException {
+
+		List<CriminalPoliceStationDTO> list=new ArrayList<>();
+		
+		try(Connection conn=DBUtil.provideConnection()) {
+			
+			PreparedStatement ps=conn.prepareStatement("select cl.criminal_id,cl.criminal_name,cl.criminal_age,cl.criminal_gender,cl.criminal_address,cl.criminal_identification_mark,ps.ps_name \r\n"
+					+ "from criminal cl inner join crime c ON cl.criminal_id=c.criminal_id\r\n"
+					+ "inner join police_station ps ON PS.PS_id=c.PS_id\r\n"
+					+ "ORDER BY cl.criminal_id;");
+			
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				int id=rs.getInt("criminal_id");
+				String n=rs.getString("criminal_name");
+				int age=rs.getInt("criminal_age");
+				String g=rs.getString("criminal_gender");
+				String add=rs.getString("criminal_address");
+				String im=rs.getString("criminal_identification_mark");
+				String psName=rs.getString("ps_name");
+				
+				CriminalPoliceStationDTO crPsDTO=new CriminalPoliceStationDTO();
+				crPsDTO.setCriminalID(id);
+				crPsDTO.setCriminalName(n);
+				crPsDTO.setCriminalAge(age);
+				crPsDTO.setCriminalGender(g);
+				crPsDTO.setCriminalAddress(add);
+				crPsDTO.setCriminalIdentificationMark(im);
+				crPsDTO.setPsName(psName);
+				
+				list.add(crPsDTO);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
