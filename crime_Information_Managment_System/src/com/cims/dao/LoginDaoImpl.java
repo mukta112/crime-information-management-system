@@ -29,7 +29,7 @@ public class LoginDaoImpl implements LoginDao {
 				if(c==0) {
 					msg="Invalid login credentials ! Please login again.";
 				}else {
-					msg="Login successfull !";
+					msg="We have verified your identity. Taking you to the portal..";
 				}
 			}
 			

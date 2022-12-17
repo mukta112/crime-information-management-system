@@ -34,7 +34,7 @@ public class VictimUsecases {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		sc.close();
+//		sc.close();
 	}
 
 	public void showVictimDetails() {
