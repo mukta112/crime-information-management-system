@@ -34,13 +34,14 @@ public class CrimeUsecases {
 		String crimeType=sc.next();
 		
 		System.out.println("Enter crime detail");
-		String crimeDetail=sc.next();
+		sc.nextLine();
+		String crimeDetail=sc.nextLine();
 		
 		System.out.println("Enter crime status like solved or unsolved");
-		String crimeStatus=sc.next();
+		String crimeStatus=sc.nextLine();
 		
-		System.out.println("Enter crime suspect");
-		String crimeSuspect=sc.next();
+		System.out.println("Enter crime suspects");
+		String crimeSuspect=sc.nextLine();
 		
 		System.out.println("Enter criminal ID");
 		int criminalID=sc.nextInt();
@@ -67,7 +68,7 @@ public class CrimeUsecases {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		sc.close();
+//		sc.close();
 	}
 
 	public void showCrimeDetails() {
@@ -77,10 +78,10 @@ public class CrimeUsecases {
 			
 			System.out.println(ANSI_RED+"CRIME TABLE"+ANSI_RESET);
 			
-			String leftAlignFormat = "| %-4d | %-10s | %-15s | %-25s | %-10s | %-15s | %-4d | %-4d | %-4d | %-4d |%n";
-			System.out.format("+------+------------+-----------------+---------------------------+------------+-----------------+------+------+------+------+%n");
-			System.out.format("| ID   | Date       | Type            | Detail                    | Status     | SuspectName     | CrID | ArID | PsID | VmID |%n");
-			System.out.format("+------+------------+-----------------+---------------------------+------------+-----------------+------+------+------+------+%n");
+			String leftAlignFormat = "| %-4d | %-10s | %-15s | %-25s | %-10s | %-20s | %-4d | %-4d | %-4d | %-4d |%n";
+			System.out.format("+------+------------+-----------------+---------------------------+------------+----------------------+------+------+------+------+%n");
+			System.out.format("| ID   | Date       | Type            | Detail                    | Status     | SuspectName          | CrID | ArID | PsID | VmID |%n");
+			System.out.format("+------+------------+-----------------+---------------------------+------------+----------------------+------+------+------+------+%n");
 			
 			for(int i=0;i<list.size();i++) {
 				System.out.format(leftAlignFormat,list.get(i).getCrimeID(),
@@ -91,7 +92,7 @@ public class CrimeUsecases {
 				
 //				System.out.println(list.get(i));
 			}		
-			System.out.format("+------+------------+-----------------+---------------------------+------------+-----------------+------+------+------+------+%n");			
+			System.out.format("+------+------------+-----------------+---------------------------+------------+----------------------+------+------+------+------+%n");			
 		} catch (CrimeException e) {
 //			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -107,10 +108,10 @@ public class CrimeUsecases {
 			
 			System.out.println(ANSI_RED+"CRIME DETAILS BY AREA"+ANSI_RESET);
 			
-			String leftAlignFormat = "| %-4d | %-10s | %-15s | %-25s | %-10s | %-15s | %-15s |%n";
-			System.out.format("+------+------------+-----------------+---------------------------+------------+-----------------+-----------------+%n");
-			System.out.format("| ID   | Date       | Type            | Detail                    | Status     | SuspectName     | AreaName        |%n");
-			System.out.format("+------+------------+-----------------+---------------------------+------------+-----------------+-----------------+%n");
+			String leftAlignFormat = "| %-4d | %-10s | %-15s | %-25s | %-10s | %-20s | %-15s |%n";
+			System.out.format("+------+------------+-----------------+---------------------------+------------+----------------------+-----------------+%n");
+			System.out.format("| ID   | Date       | Type            | Detail                    | Status     | SuspectName          | AreaName        |%n");
+			System.out.format("+------+------------+-----------------+---------------------------+------------+----------------------+-----------------+%n");
 			
 			for(int i=0;i<list.size();i++) {
 				System.out.format(leftAlignFormat,list.get(i).getCrimeID(),
@@ -118,7 +119,7 @@ public class CrimeUsecases {
 						list.get(i).getCrimeDetails(),list.get(i).getCrimeStatus(),
 						list.get(i).getCrimeSuspect(),list.get(i).getAreaName());
 			}		
-			System.out.format("+------+------------+-----------------+---------------------------+------------+-----------------+-----------------+%n");			
+			System.out.format("+------+------------+-----------------+---------------------------+------------+----------------------+-----------------+%n");			
 		
 		} catch (CrimeException e) {
 //			e.printStackTrace();
@@ -135,10 +136,10 @@ public class CrimeUsecases {
 			
 			System.out.println(ANSI_RED+"CRIME DETAILS BY POLICE STATION"+ANSI_RESET);
 			
-			String leftAlignFormat = "| %-4d | %-10s | %-15s | %-25s | %-10s | %-15s | %-15s |%n";
-			System.out.format("+------+------------+-----------------+---------------------------+------------+-----------------+-----------------+%n");
-			System.out.format("| ID   | Date       | Type            | Detail                    | Status     | SuspectName     | PSName          |%n");
-			System.out.format("+------+------------+-----------------+---------------------------+------------+-----------------+-----------------+%n");
+			String leftAlignFormat = "| %-4d | %-10s | %-15s | %-25s | %-10s | %-20s | %-15s |%n";
+			System.out.format("+------+------------+-----------------+---------------------------+------------+----------------------+-----------------+%n");
+			System.out.format("| ID   | Date       | Type            | Detail                    | Status     | SuspectName          | PSName          |%n");
+			System.out.format("+------+------------+-----------------+---------------------------+------------+----------------------+-----------------+%n");
 			
 			for(int i=0;i<list.size();i++) {
 				System.out.format(leftAlignFormat,list.get(i).getCrimeID(),
@@ -146,7 +147,7 @@ public class CrimeUsecases {
 						list.get(i).getCrimeDetails(),list.get(i).getCrimeStatus(),
 						list.get(i).getCrimeSuspect(),list.get(i).getPsName());
 			}		
-			System.out.format("+------+------------+-----------------+---------------------------+------------+-----------------+-----------------+%n");			
+			System.out.format("+------+------------+-----------------+---------------------------+------------+----------------------+-----------------+%n");			
 		
 		} catch (CrimeException e) {
 //			e.printStackTrace();
@@ -173,7 +174,7 @@ public class CrimeUsecases {
 			System.out.println(e.getMessage());
 		}
 		
-		sc.close();
+//		sc.close();
 	}
 	
 	public void updateCrimeStatusByCrimeID() {
@@ -196,7 +197,7 @@ public class CrimeUsecases {
 			System.out.println(e.getMessage());
 		}
 		
-		sc.close();
+//		sc.close();
 		
 	}
 	

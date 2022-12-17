@@ -27,7 +27,7 @@ public class AreaUsecases {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		sc.close();
+		//sc.close();
 	}
 	
 	public void showAreaDetails() {

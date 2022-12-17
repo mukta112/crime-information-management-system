@@ -28,7 +28,7 @@ public class PoliceStationUsecase {
 		} catch (PoliceStationException e) {
 			System.out.println(e.getMessage());
 		}
-		sc.close();
+//		sc.close();
 		
 	}
 	

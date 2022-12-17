@@ -31,10 +31,11 @@ public class CriminalUsecases {
 		String criminalGender=sc.next();
 		
 		System.out.println("Enter criminal address");
-		String criminalAddress=sc.next();
+		sc.nextLine();
+		String criminalAddress=sc.nextLine();
 		
 		System.out.println("Enter criminal identification mark");
-		String criminalIdentificationMark=sc.next();
+		String criminalIdentificationMark=sc.nextLine();
 		
 		try {
 			String msg=dao.addCriminal(criminalName, criminalAge, criminalGender,criminalAddress,criminalIdentificationMark);
@@ -45,7 +46,7 @@ public class CriminalUsecases {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		sc.close();
+//		sc.close();
 	}
 
 	public void showCriminalDetails() {
